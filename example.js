@@ -15,37 +15,42 @@ console.log(products);
   // TODO: Set user agent
 
   console.log('visit site');
-  await page.goto(products.jumpstart);
+  await page.goto(products.mh2c);
 
 
   console.log('wait for priceblock');
-  let z = await page.waitForSelector('#priceblock_ourprice');
+  // let z = await page.waitForSelector('#priceblock_ourprice');
   // console.log(z);
 
   console.log('get priceblock');
 
-  const price = await page.$eval('#priceblock_ourprice', (el) => {
-    console.log('choo choo')
-    console.log(el);
-    return el.textContent;
-  });
+  try {
+    const price = await page.$eval('#priceblock_ourprice', (el) => {
+      console.log('choo choo')
+      console.log(el);
+      return el.textContent;
+    });
+  } catch {
+    console.log('sad!');
+    price = 'sorrow';
+  }
 
   console.log(price);
 
-  console.log('other way');
+  // console.log('other way');
 
-  var charles = await page.evaluate(() => {
-    console.log('in here');
-    var p = document.querySelector(`#priceblock_ourprice`);
-    var spans = document.querySelectorAll(`span`);
-    console.log(p);
+  // var charles = await page.evaluate(() => {
+  //   console.log('in here');
+  //   var p = document.querySelector(`#priceblock_ourprice`);
+  //   var spans = document.querySelectorAll(`span`);
+  //   console.log(p);
 
-    console.log(spans);
-    return p.textContent;
-  });
+  //   console.log(spans);
+  //   return p.textContent;
+  // });
 
-  console.log('charles');
-  console.log(charles);
+  // console.log('charles');
+  // console.log(charles);
 
   await page.screenshot({ path: 'example.png' });
 
