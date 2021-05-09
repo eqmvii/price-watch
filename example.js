@@ -1,9 +1,25 @@
 // super hacky, gets the main price
 
-const interval = 30 * 1000 + (Math.floor(Math.random() * 60));
-
+const twilio = require('twilio');
 const puppeteer = require('puppeteer');
 const fs = require('fs');
+
+const interval = 61 * 1000
+
+var accountSid = process.env.ACCOUNTSID || 'wontwork';
+var authToken = process.env.AUTHTOKEN || 'definitelywontwork';
+
+var client = new twilio(accountSid, authToken);
+
+console.log(process.env.FROMNUMBER);
+
+client.messages.create({
+    body: 'Hello from Heroku Startup',
+    to: process.env.MYNUMBER,
+    from: process.env.FROMNUMBER,
+})
+.then((message) => console.log(message.sid)).catch((e) => console.log(e));
+
 
 let rawproducts = fs.readFileSync('products.json');
 let products = JSON.parse(rawproducts);
