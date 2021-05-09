@@ -9,7 +9,9 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node example.js"
+    "start": "node example.js",
+    "heroku_off": "heroku ps:scale web=0 worker=0",
+    "heroku_on": "heroku ps:scale web=0 worker=1"
   },
   "repository": {
     "type": "git",
