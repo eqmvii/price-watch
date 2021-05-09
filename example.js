@@ -9,7 +9,7 @@ console.log(products);
 
 (async () => {
   console.log('launch browser');
-  const browser = await puppeteer.launch({ headless: true }); // default is true
+  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] }); // default is true. Args for heroku.
   const page = await browser.newPage();
 
   // TODO: Set user agent
