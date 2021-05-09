@@ -1,5 +1,7 @@
 // super hacky, gets the main price
 
+const interval = 5 * 1000;
+
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
@@ -7,8 +9,10 @@ let rawproducts = fs.readFileSync('products.json');
 let products = JSON.parse(rawproducts);
 console.log(products);
 
-(async () => {
-  console.log('launch browser');
+setInterval(async () => {
+  let rightNow = new Date();
+
+  console.log(`launch browser at ${rightNow.toLocaleTimeString()}`);
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] }); // default is true. Args for heroku.
   const page = await browser.newPage();
 
@@ -38,22 +42,7 @@ console.log(products);
 
   console.log(price);
 
-  // console.log('other way');
-
-  // var charles = await page.evaluate(() => {
-  //   console.log('in here');
-  //   var p = document.querySelector(`#priceblock_ourprice`);
-  //   var spans = document.querySelectorAll(`span`);
-  //   console.log(p);
-
-  //   console.log(spans);
-  //   return p.textContent;
-  // });
-
-  // console.log('charles');
-  // console.log(charles);
-
   await page.screenshot({ path: 'example.png' });
 
   await browser.close();
-})();
+}, interval);

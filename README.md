@@ -1,8 +1,8 @@
 # Price checker experimentation
 
-# test
+Just playing with puppeteer, maybe throwing it on heroku for fun, idk.
 
-# heroku
+# heroku notes
 
 heroku create
 
