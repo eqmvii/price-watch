@@ -1,6 +1,6 @@
 // super hacky, gets the main price
 
-const interval = 5 * 1000;
+const interval = 30 * 1000 + (Math.floor(Math.random() * 60));
 
 const puppeteer = require('puppeteer');
 const fs = require('fs');
@@ -22,7 +22,7 @@ setInterval(async () => {
   await page.goto(products.jumpstart);
 
 
-  console.log('wait for priceblock');
+  // console.log('wait for priceblock');
   // let z = await page.waitForSelector('#priceblock_ourprice');
   // console.log(z);
 
@@ -42,7 +42,7 @@ setInterval(async () => {
 
   console.log(price);
 
-  await page.screenshot({ path: 'example.png' });
+  // await page.screenshot({ path: 'example.png' });
 
   await browser.close();
 }, interval);
