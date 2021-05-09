@@ -15,7 +15,7 @@ console.log(products);
   // TODO: Set user agent
 
   console.log('visit site');
-  await page.goto(products.mh2c);
+  await page.goto(products.jumpstart);
 
 
   console.log('wait for priceblock');
@@ -24,15 +24,16 @@ console.log(products);
 
   console.log('get priceblock');
 
+  let price = 'Not Found'
+
   try {
-    const price = await page.$eval('#priceblock_ourprice', (el) => {
+    price = await page.$eval('#priceblock_ourprice', (el) => {
       console.log('choo choo')
       console.log(el);
       return el.textContent;
     });
   } catch {
     console.log('sad!');
-    price = 'sorrow';
   }
 
   console.log(price);
